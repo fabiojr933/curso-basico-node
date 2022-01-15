@@ -1,0 +1,47 @@
+<%- include('includes/head'); %>
+<%- include('includes/nav'); %>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2">
+
+        </div>
+        <div class="col-lg-8 my-5">
+            <h1 class="display-1 text-center">Agenda</h1>
+            <p class="text-center lead">Seus contatos estao abaixo</p>
+
+            <%- include('includes/messeges');  %>
+            <div class="responsive-table">
+                <table class="table my-3">                         
+                    <tr>
+                        <td>id</td>
+                        <td>nome</td>
+                        <td>idade</td>
+                        <td>Endereço</td>
+                        <td>Acao</td>
+                    </tr>
+                    <% dados.forEach(element => { %>     
+                    <tr>
+                        <td><%= element.id %></td>
+                        <td><%= element.nome %></td>
+                        <td><%= element.telefone %></td>
+                        <td><%= element.endereco %></td>
+                        <td>
+                            <a title="Editar" class="btn btn-primary" style="display: inline;"
+                                href="/contato/editar/<%= element.id %>">Editar</a>
+                            <form
+                                action="/contato/deletar/<%= element.id %>" method="post">
+                                <input type="hidden" name="id" value="<%= element.id %>" style="display: inline;">  
+                                <button  class="btn btn-primary" >Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            
+        </div>
+    </div>
+</div>
+    <%- include('includes/footer'); %>
